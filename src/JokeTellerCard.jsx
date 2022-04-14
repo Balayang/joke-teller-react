@@ -1,22 +1,13 @@
 import React from 'react';
 
-export const JokeTellerCard = (joke) => (
-
+// props jsou vzdycky objekt, takze (joke, getJoke) nikdy nebude fungovat
+// kdezto destructuring z props objektu uz ano (proto ty slozene zavorky)
+export const JokeTellerCard = ({ joke, getJoke }) => (
 	<div className="container">
-		<button
-//			onClick={getJoke()}
-			className="button"
-			id="button"
-			value={joke}
-		>
+		{/* v onClick chces zavolat danou funkci, ne vratit jeji vysledek, proto tento zapis */}
+		<button onClick={() => getJoke()} className="button" id="button" value={joke}>
 			Tell Me A Joke
 		</button>
-		<audio
-			//onended="toggleButton()"
-			id="audio"
-			className="audio"
-			hidden
-			controls
-		></audio>
+		<audio id="audio" className="audio" hidden controls></audio>
 	</div>
 );
