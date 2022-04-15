@@ -1,5 +1,6 @@
 import React from 'react';
 import { JokeTellerCard } from './JokeTellerCard';
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 import './css/Normalize.css';
 import './css/App.css';
@@ -12,6 +13,7 @@ const API_URL =
 export const App = () => {
 	// nastavovat state jako prazdny string je celkem zapeklite, protoze prazdny string se tvari jako falsy hodnota
 	const [joke, setJoke] = React.useState('');
+	const { speak } = useSpeechSynthesis();
 
 	// todle je funkce pro nacitani jednoho joke z jejich api
 	const getJoke = async () => {
@@ -39,5 +41,5 @@ export const App = () => {
 	}, []);
 
 	// do JokeTellerCard komponenty posilame joke i funkci pro nacteni joku jako props
-	return <JokeTellerCard joke={joke} getJoke={getJoke} />;
+	return <JokeTellerCard joke={joke} getJoke={getJoke} speak={speak} />;
 };
